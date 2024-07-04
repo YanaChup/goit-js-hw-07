@@ -32,3 +32,24 @@ function onCreateBtnClick() {
 function onDestroyBtnClick() {
   divBoxesRef.innerHTML = "";
 }
+
+function onCreateBtnClick() {
+  let input = Number(randomColorInputRef.value);
+  divBoxesRef.innerHTML = "";
+
+  if (input > 0 && input <= 100 && typeof input === "number") {
+    const fragment = document.createDocumentFragment(); // Створюємо DocumentFragment
+
+    for (let i = 0; i < input; i += 1) {
+      const box = document.createElement("div");
+      box.style.backgroundColor = getRandomHexColor();
+      box.style.width = `${30 + i * 10}px`;
+      box.style.height = `${30 + i * 10}px`;
+      fragment.appendChild(box); // Додаємо елемент до DocumentFragment
+    }
+
+    divBoxesRef.appendChild(fragment); // Додаємо DocumentFragment до DOM
+  } else {
+    randomColorInputRef.value = "";
+  }
+}
