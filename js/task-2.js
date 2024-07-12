@@ -27,7 +27,7 @@ const images = [
 
 const galleryListRef = document.querySelector(".gallery");
 
-const galleryItems = images.map(({ url, alt }) => {
+const galleryItem = images.map(({ url, alt }) => {
   const item = document.createElement("li");
   item.classList.add("gallery__item");
 
@@ -40,4 +40,4 @@ const galleryItems = images.map(({ url, alt }) => {
   return item;
 });
 
-galleryListRef.append(...galleryItems);
+galleryListRef.append(...galleryItem);

@@ -1,12 +1,10 @@
-const textInput = document.querySelector("input#name-input");
-const output = document.querySelector("span#name-output");
+const userNameEl = document.querySelector("input#name-input");
+const outputEl = document.querySelector("span#name-output");
 
-textInput.addEventListener("input", updateNameOutput);
+userNameEl.addEventListener("input", onUserNameInput);
 
-function updateNameOutput() {
-  const text = textInput.value.trim();
+function onUserNameInput(e) {
+  const userName = userNameEl.value.trim() || "Anonymous";
 
-  text === ""
-    ? (output.textContent = "Anonymous")
-    : (output.textContent = text);
+  outputEl.textContent = `${userName}`;
 }
