@@ -14,21 +14,34 @@ function getRandomHexColor() {
 }
 
 function onCreateBtnClick() {
-  let input = Number(randomColorInputEl.value);
-  divBoxesEl.innerHTML = "";
+  const input = Number(randomColorInputEl.value);
 
-  if (input > 0 && input <= 100 && typeof input === "number") {
-    for (let i = 0; i < input; i += 1) {
-      divBoxesEl.append(document.createElement("div"));
-      divBoxesEl.lastChild.style.backgroundColor = getRandomHexColor();
-      divBoxesEl.lastChild.style.width = `${30 + i * 10}px`;
-      divBoxesEl.lastChild.style.height = `${30 + i * 10}px`;
-    }
-  } else {
+  if (input >= 1 && input <= 100) {
+    createBoxes(input);
     randomColorInputEl.value = "";
   }
 }
 
 function onDestroyBtnClick() {
+  destroyBoxes();
+}
+
+function createBoxes(amount) {
+  destroyBoxes();
+
+  const fragment = document.createDocumentFragment();
+
+  for (let i = 0; i < amount; i++) {
+    const newDiv = document.createElement("div");
+    newDiv.style.backgroundColor = getRandomHexColor();
+    newDiv.style.width = `${30 + i * 10}px`;
+    newDiv.style.height = `${30 + i * 10}px`;
+    fragment.appendChild(newDiv);
+  }
+
+  divBoxesEl.appendChild(fragment);
+}
+
+function destroyBoxes() {
   divBoxesEl.innerHTML = "";
 }
